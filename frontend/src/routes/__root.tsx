@@ -14,6 +14,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { AuthProvider } from "../context/AuthContext.jsx";
 import { ThemeProvider } from "../context/ThemeContext.jsx";
+import { APP_NAME } from "@/utils/constants.js";
 
 function NotFoundComponent() {
   return (
@@ -80,9 +81,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "StockPro — Gestión de Stock" },
+      { title: `${APP_NAME.title} - ${APP_NAME.slogan}` },
       { name: "description", content: "Sistema profesional de gestión de inventario, ventas y transferencias." },
-      { property: "og:title", content: "StockPro — Gestión de Stock" },
+      { property: "og:title", content: `${APP_NAME.title} - ${APP_NAME.slogan}` },
       { property: "og:description", content: "Sistema profesional de gestión de inventario, ventas y transferencias." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -92,7 +93,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" },
+      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" },
     ],
   }),
   shellComponent: RootShell,

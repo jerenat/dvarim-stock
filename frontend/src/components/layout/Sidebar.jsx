@@ -15,6 +15,10 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
+import Logo from "@/assets/logo.svg";
+
+import { APP_NAME } from "@/utils/constants";
+
 const NAV = [
   { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { to: "/productos", label: "Productos", icon: Package },
@@ -48,11 +52,14 @@ export function Sidebar({ open, onClose }) {
         )}
       >
         <div className="flex h-16 items-center justify-between px-6 border-b border-sidebar-border">
-          <Link to="/dashboard" className="flex items-center gap-2 font-semibold">
+          <Link
+            to="/dashboard"
+            className="flex items-center gap-2 font-semibold"
+          >
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-              <Warehouse className="h-4 w-4" />
+              <img src={Logo} alt="DVARIM" className="h-8 w-8" />
             </div>
-            <span className="text-base tracking-tight">StockPro</span>
+            <span className="text-base tracking-tight">{APP_NAME.title}</span>
           </Link>
           <button
             onClick={onClose}
@@ -65,7 +72,8 @@ export function Sidebar({ open, onClose }) {
 
         <nav className="flex-1 space-y-1 overflow-y-auto p-3">
           {NAV.map((item) => {
-            const active = pathname === item.to || pathname.startsWith(item.to + "/");
+            const active =
+              pathname === item.to || pathname.startsWith(item.to + "/");
             const Icon = item.icon;
             return (
               <Link
