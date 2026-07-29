@@ -1,26 +1,33 @@
-version: "3.9"
+# /var/www/ihrapps/dvarim-app/docker-compose.yml
+version: '3.8'
 
 services:
-  backend:
-    build: ./server
+  # Backend DVARIM
+  stock-backend:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
     container_name: stock-backend
-
     restart: unless-stopped
-
-    ports:
-      - "3001:3000"
-
     environment:
-      - NODE_ENV=production
+      NODE_ENV: production
+      PORT: 3000
+      MONGODB_URI: mongodb://holybible-mongo:27017/stock_pro
+      JWT_SECRET: ${JWT_SECRET:-dvarim_jwt_super_secret_2024}
+      FRONTEND_URL: https://dvarim.ihrapps.com
+    networks:
+      - ihrapps_internal
 
-  frontend:
-    build: ./frontend
+  # Frontend DVARIM
+  stock-frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
     container_name: stock-frontend
-
     restart: unless-stopped
+    networks:
+      - ihrapps_internal
 
-    ports:
-      - "8081:4173"
-
-    depends_on:
-      - backend
+networks:
+  ihrapps_internal:
+    external: true
