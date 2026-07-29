@@ -1,13 +1,13 @@
-# /var/www/ihrapps/dvarim-app/server/Dockerfile
-FROM node:20-alpine
+cat > /var/www/dvarim-stock/server/Dockerfile << 'EOF'
+FROM node:22-alpine
 
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm ci --only=production
+RUN npm install --legacy-peer-deps --only=production
 
 COPY . .
 
 EXPOSE 3000
-
 CMD ["node", "index.js"]
+EOF
