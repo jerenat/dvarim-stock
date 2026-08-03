@@ -6,9 +6,17 @@ import { toast } from "sonner";
 
 // -- librerias locales
 import { APP_NAME } from "../utils/constants";
+import { useTheme } from "@/context/ThemeContext.jsx";
 import { useAuth } from "@/context/AuthContext.jsx";
 import { Button } from "@/components/common/Button.jsx";
 import { Input, Label } from "@/components/common/Input.jsx";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 // -- image & logo
 import LoginBackground from "@/assets/login_background.jpeg"; // imagen de background
@@ -30,9 +38,10 @@ export const Route = createFileRoute("/login")({
 function LoginPage() {
   const { login, isAuthenticated } = useAuth();
   const navigate = useNavigate();
-  const [email, setEmail] = useState("admin@dvarim.com");
-  const [password, setPassword] = useState("admin123");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const { theme, toggleTheme } = useTheme();
 
   if (isAuthenticated) return <Navigate to="/dashboard" />;
 
@@ -52,7 +61,6 @@ function LoginPage() {
 
   return (
     <div className="min-h-screen grid lg:grid-cols-2 bg-background">
-
       {/* -- SECCION IZQUIERDA - PRESENTACION & LOGO -- */}
       <div className="hidden lg:flex flex-col justify-between p-12 relative overflow-hidden text-primary-foreground">
         {/* Imagen de fondo */}
@@ -95,22 +103,20 @@ function LoginPage() {
       </div>
 
       {/* -- LOGIN O INCIO DE SESIÓN -- */}
-      <div className="flex items-center justify-center p-6 sm:p-12">
+      <div className="flex flex-col items-center justify-between p-6 sm:p-12 min-h-screen">
         <div className="w-full max-w-md space-y-8">
           <div>
-
             <div className="my-10 flex flex-col items-center justify-center gap-10">
               <img src={Logo} alt="DVARIM" className="h-32 w-32" />
               <div className="flex flex-col justify-center items-center">
-              <h2 className="text-3xl font-bold tracking-tight">
-                Iniciar sesión
-              </h2>
-              <p className="mt-2 text-sm text-muted-foreground">
-                Ingresá tus credenciales para acceder al sistema
-              </p>
+                <h2 className="text-3xl font-bold tracking-tight">
+                  Iniciar sesión
+                </h2>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  Ingresá tus credenciales para acceder al sistema
+                </p>
               </div>
             </div>
-
           </div>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
@@ -155,6 +161,34 @@ function LoginPage() {
               )}
             </Button>
           </form>
+        </div>
+
+        {/* -- FOOTER -- */}
+        <div className="p-4 text-center text-sm text-muted-foreground mt-auto w-full">
+          <ul className="flex flex-wrap justify-center items-center gap-6">
+            <li>
+              <a href={APP_NAME.app_domain + "/about-us"}>Acerca de</a>
+            </li>
+            <li>
+              <a href={APP_NAME.app_domain + "/contact"}>Contacto</a>
+            </li>
+            <li>
+              <a href={APP_NAME.app_domain + "/privacy-policy"}>
+                Politica de Privacidad
+              </a>
+            </li>
+            <li className="w-40">
+              <Select value={theme} onValueChange={toggleTheme}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Seleccioná un tema" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="light">Claro</SelectItem>
+                  <SelectItem value="dark">Oscuro</SelectItem>
+                </SelectContent>
+              </Select>
+            </li>
+          </ul>
         </div>
       </div>
     </div>

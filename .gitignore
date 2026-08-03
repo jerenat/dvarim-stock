@@ -86,3 +86,7 @@ vite.config.ts.timestamp-*
 
 # TanStack
 .tanstack/
+
+
+# Base de datos
+ddbb/

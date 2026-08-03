@@ -1,0 +1,22 @@
+[{
+  "_id": {
+    "$oid": "64a1b2c3d4e5f6a7b8c9d201"
+  },
+  "nombre": "Jeremias",
+  "apellido": "Geminiani",
+  "email": "jere8886@gmail.com",
+  "password": "123456",
+  "rol": "administrador",
+  "stockAsignado": 0,
+  "estado": "activo",
+  "avatar": "JG",
+  "ultimoAcceso": {
+    "$date": "2026-07-22T08:00:00.000Z"
+  },
+  "createdAt": {
+    "$date": "2026-07-22T00:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-07-27T01:02:14.833Z"
+  }
+}]

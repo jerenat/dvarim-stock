@@ -1,0 +1,23 @@
+[{
+  "_id": {
+    "$oid": "64a1b2c3d4e5f6a7b8c9d601"
+  },
+  "nombre": "Dvarim S.A",
+  "ruc": "80012345-6",
+  "direccion": "Humboldt 180, Bahia Blanca, AR",
+  "telefono": "+595 21 555-0123",
+  "email": "contacto@stockpro.com",
+  "moneda": "ARS",
+  "configuracion": {
+    "stockBajo": 0,
+    "notificacionesEmail": true,
+    "zonaHoraria": "America/Argentina",
+    "idioma": "es"
+  },
+  "createdAt": {
+    "$date": "2026-07-22T00:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-07-26T05:16:50.022Z"
+  }
+}]
